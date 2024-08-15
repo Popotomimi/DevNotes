@@ -99,6 +99,10 @@ ul {
   gap: 2rem;
 }
 
+.notes-container p {
+  color: #fff;
+}
+
 .note {
   min-height: 200px;
   padding: 1rem;
