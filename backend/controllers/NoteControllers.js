@@ -55,9 +55,40 @@ exports.updateNoteFixed = async (req, res) => {
     if (!note) {
       return res.status(404).json({ message: "Nota não encontrada" });
     }
-    res.status(200).json({ message: "Nota atualizada com sucesso", note });
+    res.status(200).json({ message: "Pin atualizado com sucesso!", note });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao atualizar a nota", error });
+    res.status(500).json({ message: "Erro ao atualizar o Pin", error });
+  }
+};
+
+exports.updateNote = async (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+
+  try {
+    const note = await Note.findByIdAndUpdate(id, { content }, { new: true });
+    if (!note) {
+      return res.status(404).json({ message: "Nota não encontrada" });
+    }
+    res.status(200).json({ message: "Nota atualizada com sucesso!", note });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+};
+
+exports.duplicateNote = async (req, res) => {
+  const { content, fixed } = req.body;
+
+  const note = new Note({
+    content,
+    fixed,
+  });
+
+  try {
+    await note.save();
+    res.status(200).json({ message: "Nota Duplicada." });
+  } catch (error) {
+    res.status(401).json({ message: error });
   }
 };
 

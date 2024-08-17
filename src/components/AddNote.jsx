@@ -60,16 +60,48 @@ const AddNote = () => {
 
   const togglePin = async (id, currentFixed) => {
     try {
-      const response = await axios.put(
-        `http://localhost:8800/notes/update/${id}`,
-        { fixed: !currentFixed }
-      );
-      toast.success(response.data.message);
+      await axios.put(`http://localhost:8800/notes/updatefixed/${id}`, {
+        fixed: !currentFixed,
+      });
       setNotes(
         notes.map((note) =>
           note._id === id ? { ...note, fixed: !currentFixed } : note
         )
       );
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const duplicateNote = async (content, fixed) => {
+    const newNote = {
+      content,
+      fixed,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8800/notes/duplicate",
+        newNote
+      );
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  const updateNote = async (id, content) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8800/notes/update/${id}`,
+        {
+          content,
+        }
+      );
+      setNotes(
+        notes.map((note) => (note._id === id ? { ...note, content } : note))
+      );
+      toast.success(response.data.message);
     } catch (error) {
       toast.error(error.message);
     }
@@ -95,13 +127,26 @@ const AddNote = () => {
               <div
                 className={`note ${note.fixed ? "fixed" : ""}`}
                 key={note._id}>
-                <textarea defaultValue={note.content}></textarea>
+                <textarea
+                  defaultValue={note.content}
+                  onBlur={(e) =>
+                    updateNote(note._id, e.target.value)
+                  }></textarea>
                 <BiPin
                   className="pin"
+                  title="Fixar nota!"
                   onClick={() => togglePin(note._id, note.fixed)}
                 />
-                <BiX onClick={() => deleteNote(note._id)} className="x" />
-                <BiSolidFilePlus className="plus" />
+                <BiX
+                  className="x"
+                  title="Excluir Nota!"
+                  onClick={() => deleteNote(note._id)}
+                />
+                <BiSolidFilePlus
+                  className="plus"
+                  title="Duplicar Nota!"
+                  onClick={() => duplicateNote(note.content, note.fixed)}
+                />
               </div>
             ))}
           </>

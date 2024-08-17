@@ -22,10 +22,29 @@ ul {
   list-style: none;
 }
 
+nav li a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .search-container {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.search-container svg {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.search-container svg:hover {
+  background-color: #fff;
+  color: #202124;
 }
 
 .search-input {
@@ -76,6 +95,15 @@ ul {
 .add-note-container button {
   padding: 10px;
   border-radius: 5px;
+}
+
+.add-note {
+  transition: 0.5s;
+}
+
+.add-note:hover {
+  background-color: #fff;
+  color: #333;
 }
 
 .add-note-container input {
