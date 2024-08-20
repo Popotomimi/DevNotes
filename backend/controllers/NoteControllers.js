@@ -43,7 +43,25 @@ exports.deleteNote = async (req, res) => {
 
   await Note.findByIdAndDelete(id);
 
-  res.status(200).json({ message: "Nota removido com sucesso!" });
+  res.status(200).json({ message: "Nota removida com sucesso!" });
+};
+
+exports.searchNotes = async (req, res) => {
+  const { content } = req.body;
+
+  try {
+    const notes = await Note.find({
+      content: { $regex: content, $options: "i" },
+    });
+    if (!notes.length) {
+      res.status(400).json({ message: `Não encontramos nada com ${content}` });
+      return;
+    } else {
+      res.status(200).json({ notes });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 exports.updateNoteFixed = async (req, res) => {

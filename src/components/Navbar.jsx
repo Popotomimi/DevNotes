@@ -2,21 +2,27 @@
 import { BiSearch, BiDownload } from "react-icons/bi";
 
 // Navigation
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Hooks
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Message
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const inputRef = useRef("");
 
   const handleSearch = () => {
     if (search === "") {
       toast.warn("Digite algo para poder pesquisar!");
       return;
+    } else {
+      setSearch(null);
+      navigate("/search", { state: { search } });
+      inputRef.current.value = "";
     }
   };
 
@@ -34,6 +40,7 @@ const Navbar = () => {
               type="text"
               className="search-input"
               placeholder="Busque por uma nota"
+              ref={inputRef}
               onChange={(e) => setSearch(e.target.value)}
             />
             <BiSearch onClick={handleSearch} />

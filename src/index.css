@@ -200,3 +200,14 @@ nav li a {
 .note.fixed {
   background-color: #3c3c3c;
 }
+
+.search button {
+  margin: 50px auto;
+}
+
+.search h1 {
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
