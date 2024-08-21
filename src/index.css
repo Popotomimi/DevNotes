@@ -211,3 +211,29 @@ nav li a {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+/* Responsividade */
+@media (max-width: 450px) {
+  ul {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 350px;
+  }
+
+  .add-note-container {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .notes-container {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+}
