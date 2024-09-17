@@ -33,7 +33,7 @@ const Navbar = () => {
   const exportNotes = async () => {
     try {
       const response = await axios.get(
-        "https://devnotesreact.netlify.app/8800/notes"
+        "https://devnotesreact.netlify.app/notes"
       );
       setNotes(response.data.notes);
     } catch (error) {
