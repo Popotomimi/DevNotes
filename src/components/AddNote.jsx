@@ -17,7 +17,9 @@ const AddNote = () => {
   useEffect(() => {
     const getNotes = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/notes");
+        const response = await axios.get(
+          "https://devnotesreact.netlify.app/8800/notes"
+        );
 
         setNotes(response.data.notes);
       } catch (error) {
@@ -39,7 +41,7 @@ const AddNote = () => {
     };
 
     const response = await axios.post(
-      "http://localhost:8800/notes/addnote",
+      "https://devnotesreact.netlify.app/8800/notes/addnote",
       newNote
     );
 
@@ -50,7 +52,7 @@ const AddNote = () => {
   const deleteNote = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8800/notes/delete/${id}`
+        `https://devnotesreact.netlify.app/8800/notes/delete/${id}`
       );
       toast.success(response.data.message);
     } catch (error) {
@@ -60,9 +62,12 @@ const AddNote = () => {
 
   const togglePin = async (id, currentFixed) => {
     try {
-      await axios.put(`http://localhost:8800/notes/updatefixed/${id}`, {
-        fixed: !currentFixed,
-      });
+      await axios.put(
+        `https://devnotesreact.netlify.app/notes/8800/updatefixed/${id}`,
+        {
+          fixed: !currentFixed,
+        }
+      );
       setNotes(
         notes.map((note) =>
           note._id === id ? { ...note, fixed: !currentFixed } : note
@@ -81,7 +86,7 @@ const AddNote = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8800/notes/duplicate",
+        "https://devnotesreact.netlify.app/8800/notes/duplicate",
         newNote
       );
       toast.success(response.data.message);
@@ -93,7 +98,7 @@ const AddNote = () => {
   const updateNote = async (id, content) => {
     try {
       const response = await axios.put(
-        `http://localhost:8800/notes/update/${id}`,
+        `https://devnotesreact.netlify.app/8800/notes/update/${id}`,
         {
           content,
         }
