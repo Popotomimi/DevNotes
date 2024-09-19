@@ -17,7 +17,7 @@ const Search = () => {
     const getNotes = async () => {
       try {
         const response = await axios.post(
-          "https://devnotesreact.netlify.app/notes/search",
+          "http://localhost:8800/notes/search",
           {
             content: search,
           }
