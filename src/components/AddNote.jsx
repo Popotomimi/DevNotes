@@ -17,7 +17,9 @@ const AddNote = () => {
   useEffect(() => {
     const getNotes = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/notes");
+        const response = await axios.get(
+          "https://devnotes-backend.onrender.com/notes"
+        );
 
         setNotes(response.data.notes);
       } catch (error) {
@@ -39,7 +41,7 @@ const AddNote = () => {
     };
 
     const response = await axios.post(
-      "http://localhost:8800/notes/addnote",
+      "https://devnotes-backend.onrender.com/notes/addnote",
       newNote
     );
 
@@ -50,7 +52,7 @@ const AddNote = () => {
   const deleteNote = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8800/notes/delete/${id}`
+        `https://devnotes-backend.onrender.com/notes/delete/${id}`
       );
       toast.success(response.data.message);
     } catch (error) {
@@ -60,9 +62,12 @@ const AddNote = () => {
 
   const togglePin = async (id, currentFixed) => {
     try {
-      await axios.put(`http://localhost:8800/notes/updatefixed/${id}`, {
-        fixed: !currentFixed,
-      });
+      await axios.put(
+        `https://devnotes-backend.onrender.com/notes/updatefixed/${id}`,
+        {
+          fixed: !currentFixed,
+        }
+      );
       setNotes(
         notes.map((note) =>
           note._id === id ? { ...note, fixed: !currentFixed } : note
@@ -81,7 +86,7 @@ const AddNote = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8800/notes/duplicate",
+        "https://devnotes-backend.onrender.com/notes/duplicate",
         newNote
       );
       toast.success(response.data.message);
@@ -93,7 +98,7 @@ const AddNote = () => {
   const updateNote = async (id, content) => {
     try {
       const response = await axios.put(
-        `http://localhost:8800/notes/update/${id}`,
+        `https://devnotes-backend.onrender.com/notes/update/${id}`,
         {
           content,
         }

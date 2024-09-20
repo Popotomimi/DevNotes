@@ -17,7 +17,7 @@ const Search = () => {
     const getNotes = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8800/notes/search",
+          "https://devnotes-backend.onrender.com/notes/search",
           {
             content: search,
           }
