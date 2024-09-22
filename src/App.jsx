@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddNote from "./components/AddNote";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
+import Footer from "./components/Footer";
 
 // Message
 import { ToastContainer } from "react-toastify";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<AddNote />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
