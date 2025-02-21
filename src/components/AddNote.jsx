@@ -27,7 +27,7 @@ const AddNote = () => {
       }
     };
     getNotes();
-  }, [notes]);
+  }, []);
 
   const addNote = async () => {
     if (text === "") {
@@ -156,7 +156,11 @@ const AddNote = () => {
             ))}
           </>
         ) : (
-          <p>Você ainda não tem notas...</p>
+          <div className="floating-squares">
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+          </div>
         )}
       </div>
     </div>
