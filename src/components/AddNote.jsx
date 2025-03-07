@@ -27,7 +27,7 @@ const AddNote = () => {
       }
     };
     getNotes();
-  }, []);
+  }, [notes]);
 
   const addNote = async () => {
     if (text === "") {
